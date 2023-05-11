@@ -159,7 +159,7 @@ resource "aws_lambda_function" "visitorFunc" {
   runtime = "python3.9"
   depends_on = [aws_iam_role_policy_attachment.attachment]
 }
-/*
+
 ###  API GATEWAY SETUP  ###
 
 # Creates a REST API that calls the lambda function
@@ -243,4 +243,3 @@ resource "aws_api_gateway_stage" "prod" {
   rest_api_id = aws_api_gateway_rest_api.callVisitorFunc.id
   stage_name = "prod"
 }
-*/
