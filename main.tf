@@ -132,7 +132,7 @@ resource "aws_iam_policy" "VisitCountTotalAccess" {
 EOF
 }
 
-/*# Attaches the policies to the lambda role
+# Attaches the policies to the lambda role
 resource "aws_iam_role_policy_attachment" "attachment" {
   for_each = toset([
     aws_iam_policy.BasicLambdaPolicy.arn,
@@ -141,7 +141,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
   role       = aws_iam_role.lambda_role.name
   policy_arn = each.value
-} */
+} 
 
 # turns the python code into a zip file to be uploaded to aws lambda
 data "archive_file" "zip_python_code" {
