@@ -156,7 +156,7 @@ resource "aws_lambda_function" "visitorFunc" {
   function_name = "visitorFunc"
   role = aws_iam_role.lambda_role.arn
   handler = "visitorFunc.lambda_handler"
-  runtime = "python3.10"
+  runtime = "python3.9"
   depends_on = [aws_iam_role_policy_attachment.attachment]
 }
 
