@@ -132,7 +132,7 @@ resource "aws_iam_policy" "VisitCountTotalAccess" {
 EOF
 }
 
-# Attaches the policies to the lambda role
+/*# Attaches the policies to the lambda role
 resource "aws_iam_role_policy_attachment" "attachment" {
   for_each = toset([
     aws_iam_policy.BasicLambdaPolicy.arn,
@@ -141,7 +141,7 @@ resource "aws_iam_role_policy_attachment" "attachment" {
 
   role       = aws_iam_role.lambda_role.name
   policy_arn = each.value
-} 
+} */
 
 # turns the python code into a zip file to be uploaded to aws lambda
 data "archive_file" "zip_python_code" {
@@ -150,7 +150,7 @@ data "archive_file" "zip_python_code" {
   output_path = "${path.module}/lambda/visitorFunc.zip"
 }
 
-# Creates the lambda function by uploading the zip file that was created
+/*# Creates the lambda function by uploading the zip file that was created
 resource "aws_lambda_function" "visitorFunc" {
   filename = "${path.module}/lambda/visitorFunc.zip"
   function_name = "visitorFunc"
@@ -243,3 +243,4 @@ resource "aws_api_gateway_stage" "prod" {
   rest_api_id = aws_api_gateway_rest_api.callVisitorFunc.id
   stage_name = "prod"
 }
+*/
