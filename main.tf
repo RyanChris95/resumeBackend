@@ -150,7 +150,7 @@ data "archive_file" "zip_python_code" {
   output_path = "${path.module}/lambda/visitorFunc.zip"
 }
 
-/*# Creates the lambda function by uploading the zip file that was created
+# Creates the lambda function by uploading the zip file that was created
 resource "aws_lambda_function" "visitorFunc" {
   filename = "${path.module}/lambda/visitorFunc.zip"
   function_name = "visitorFunc"
@@ -159,7 +159,7 @@ resource "aws_lambda_function" "visitorFunc" {
   runtime = "python3.9"
   depends_on = [aws_iam_role_policy_attachment.attachment]
 }
-
+/*
 ###  API GATEWAY SETUP  ###
 
 # Creates a REST API that calls the lambda function
