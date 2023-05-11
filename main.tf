@@ -1,8 +1,16 @@
 terraform{
   # Configure the provider
-  provider "aws" {
-    region = "us-east-2"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.52.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
+    }
   }
+  required_version = ">= 1.1.0"
 
   cloud {
     organization = "rdcresume"
@@ -12,6 +20,12 @@ terraform{
     }
   }
 }
+
+provider "aws" {
+  region = "us-east-2"
+}
+
+resource "random_pet" "sg" {}
 ###  DYNAMODB SETUP  ###
 
 # Create a DynamoDB table
@@ -142,7 +156,7 @@ resource "aws_lambda_function" "visitorFunc" {
   function_name = "visitorFunc"
   role = aws_iam_role.lambda_role.arn
   handler = "visitorFunc.lambda_handler"
-  runtime = "python3.10"
+  runtime = "python3.9"
   depends_on = [aws_iam_role_policy_attachment.attachment]
 }
 
